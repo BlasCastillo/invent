@@ -12,7 +12,7 @@ $roles = $rolesController->verTodos(); // Obtener todos los roles
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Roles</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 <body>
 <div class="container mt-5">
@@ -36,8 +36,8 @@ $roles = $rolesController->verTodos(); // Obtener todos los roles
                         <td><?php echo htmlspecialchars($rol['nombre']); ?></td>
                         <td><?php echo htmlspecialchars($rol['valor']); ?></td>
                         <td>
-                            <a href="RolesModificar.php?id=<?php echo $rol['id']; ?>" class="btn btn-warning">Modificar</a>
-                            <button class="btn btn-danger" onclick="eliminarRol(<?php echo $rol['id']; ?>)">Eliminar</button>
+                            <a href="RolesEditar.php?id=<?php echo $rol['id']; ?>" class="btn btn-warning">Modificar</a>
+                            <a href="RolesEliminar.php?id=<?php echo $rol['id']; ?>" class="btn btn-danger">Eliminar</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -49,23 +49,6 @@ $roles = $rolesController->verTodos(); // Obtener todos los roles
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-
-<script>
-function eliminarRol(id) {
-    swal({
-        title: "¿Estás seguro?",
-        text: "Una vez eliminado, no podrás recuperar este rol.",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-    }).then((willDelete) => {
-        if (willDelete) {
-            window.location.href = 'RolesEliminar.php?id=' + id; // Redirigir a la acción de eliminar
-        }
-    });
-}
-</script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

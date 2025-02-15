@@ -48,48 +48,47 @@ class Roles
 
     public function crearRol($nombre, $valor) {
         try {
-            echo "Datos recibidos en el modelo: Nombre - $nombre, Valor - $valor"; // Depuración
+            /*echo "Datos recibidos en el modelo: Nombre - $nombre, Valor - $valor"; // Depuración*/
             $query = "INSERT INTO roles (nombre, valor) VALUES (:nombre, :valor)";
             $stmt = $this->conexion->prepare($query);
             $stmt->bindParam(':nombre', $nombre);
             $stmt->bindParam(':valor', $valor);
             $stmt->execute();
-            echo "Rol creado exitosamente"; // Depuración
+            /*echo "Rol creado exitosamente"; // Depuración*/
             return true;
         } catch(PDOException $e) {
-            echo "Error al crear los roles: " . $e->getMessage();
+            /*echo "Error al crear los roles: " . $e->getMessage();*/
             return false;
         }
     }
     
 
-    public function actualizarRol($id, $nombre, $valor) {
+    public function editarRol($id, $nombre, $valor) {
         try {
             $query = "UPDATE roles SET nombre = :nombre, valor = :valor WHERE id = :id";
             $stmt = $this->conexion->prepare($query);
-            $stmt->bindParam(':nombre', $nombre);
-            $stmt->bindParam(':valor', $valor);
             $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':nombre', $nombre);
+                $stmt->bindParam(':valor', $valor);
             $stmt->execute();
             return true;
         } catch(PDOException $e) {
-            echo "Error al actualizar los roles: ". $e->getMessage();
             return false;
         }
     }
 
-    public function eliminarRol($id) {
-        try {
-            $query = "DELETE FROM roles WHERE id = :id";
-            $stmt = $this->conexion->prepare($query);
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
-            return true;
-        } catch(PDOException $e) {
-            echo "Error al eliminar los roles: ". $e->getMessage();
-            return false;
-        }
+    public function eliminarRol($id)
+{
+    try {
+        $query = "DELETE FROM roles WHERE id = :id";
+        $stmt = $this->conexion->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e) {
+        return false;
     }
+}
 
     public function obtenerTodosRoles() {
         try {
